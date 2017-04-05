@@ -16,7 +16,6 @@ Countries.prototype = {
       var results = JSON.parse(jsonString);
 
       var countries = Countries.prototype.createCountriesArray(results);
-      // console.log(countries);
       callback(countries);
     });
   },
@@ -26,7 +25,7 @@ Countries.prototype = {
     for(var result of results){
       var name = result.name;
       countries.push(name);
-      console.log(name);
+     
     }
     return countries;
   }

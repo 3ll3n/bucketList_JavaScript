@@ -1,12 +1,3 @@
-// var Country = function(options){
-//   this.name = options.name;
-//   this.capital = options.capital;
-//   this.currency = options.currency;
-// };
-
-// module.exports = Country;
-
-
 var Country = function(){
 
 };
@@ -19,17 +10,16 @@ Country.prototype = {
     request.send();
   }, 
   selectedCountry: function(selected, callback){
-    this.makeRequest(("https://restcountries.eu/rest/v2/name" + selected), function(){
+    var url = "https://restcountries.eu/rest/v2/name/" + selected;
+    this.makeRequest(url, function(){
       if (this.status !== 200) return;
       var jsonString = this.responseText;
-      var results = JSON.parse(jsonString);
-
-      var selectedCountry = Country.prototype.allSelectedCountryInfo(results);
-      callback(selectedCountry);
-    };
-  }, 
-  allSelectedCountryInfo: function(){
-
+      var countryResult = JSON.parse(jsonString);
+      var countryInfo = countryResult[0];
+      callback(countryInfo);
+      console.log(countryInfo);
+      
+        });
   }
 };
 
